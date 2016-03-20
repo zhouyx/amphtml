@@ -31,7 +31,7 @@
     "body-parser": "1.14.2",
     "browserify": "13.0.0",
     "chai": "3.5.0",
-    "chai-as-promised": "5.2.0",
+    "chai-as-promised": "5.3.0",
     "connect": "3.4.1",
     "connect-livereload": "0.5.4",
     "cssnano": "3.3.2",
