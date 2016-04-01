@@ -76,9 +76,9 @@ export SAUCE_ACCESS_KEY=access-key
 
 Also for local testing, download [saucelabs connect](https://docs.saucelabs.com/reference/sauce-connect/) (If you are having trouble, downgrade to 4.3.10) and establish a tunnel by running the `sc` before running tests.
 
-If your pull request contains JS or CSS changes and it does not change the build system, it will be automatically built and tested on [Travis](https://travis-ci.org/ampproject/amphtml/builds). After the travis run is finished the state will be logged to your PR.
+If your pull request contains JS or CSS changes and it does not change the build system, it will be automatically built and tested on [Travis](https://travis-ci.org/ampproject/amphtml/builds). After the travis run completes, the result will be logged to your PR.
 
-If a test flaked on a pull request you can ask a project owner to kick of another run for you.
+If a test flaked on a pull request you can ask a project owner to restart the tests for you.
 
 ### Manual testing
 
