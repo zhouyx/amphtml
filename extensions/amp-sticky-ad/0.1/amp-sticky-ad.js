@@ -38,6 +38,15 @@ class AmpStickyAd extends AMP.BaseElement {
       return;
     }
   }
+
+  layoutCallback() {
+    this.scheduleLayout(this.element.firstElementChild);
+    this.updateInViewport(this.element.firstElementChild, true);
+    this.getViewport().addToFixedLayer(this.element);
+    var maxHeight = Math.min(window.innerHeight/6, 100);
+    this.element.style.maxHeight = maxHeight.toString() + 'px';
+    return Promise.resolve();
+  }
 }
 
 AMP.registerElement('amp-sticky-ad', AmpStickyAd, CSS);
