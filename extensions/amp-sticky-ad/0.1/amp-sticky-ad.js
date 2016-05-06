@@ -41,13 +41,15 @@ class AmpStickyAd extends AMP.BaseElement {
     }
     this.viewport_ = this.getViewport();
     this.isDisplayed_ = false;
+    this.initialScrollTop = this.viewport_.getScrollTop();
     /** @const @private {!Vsync} */
     this.vsync_ = vsyncFor(this.getWin());
     this.viewport_.onScroll(() => {
       console.log("onscroll");
       if(!this.isDisplayed_) {
         console.log("not displayed yet");
-        if(this.viewport_.getSize().height < this.viewport_.getScrollTop()) {
+        if(this.viewport_.getSize().height < Math.abs(this.viewport_.getScrollTop()
+            -this.initialScrollTop)) {
           console.log("should display!");
           this.isDisplayed_ = true;
           this.element.style.display = 'block';
