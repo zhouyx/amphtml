@@ -19,6 +19,8 @@ import {Layout} from '../../../src/layout';
 import {dev} from '../../../src/log';
 import {isExperimentOn} from '../../../src/experiments';
 import {isLayoutSizeDefined} from '../../../src/layout';
+import {setStyles} from '../../../src/style';
+import {vsyncFor} from '../../../src/vsync';
 
 /** @const */
 const TAG = 'amp-sticky-ad';
@@ -28,17 +30,41 @@ class AmpStickyAd extends AMP.BaseElement {
   isLayoutSupported(layout) {
     return layout == Layout.NODISPLAY;
   }
-
   /** @override */
   buildCallback() {
     /** @const @private {boolean} */
     this.isExperimentOn_ = isExperimentOn(this.getWin(), TAG);
+    this.viewport_ = this.getViewport();
     if (!this.isExperimentOn_) {
       dev.warn(TAG, `TAG ${TAG} disabled`);
       return;
     }
     this.viewport_ = this.getViewport();
-    this.unlistenScroll = null;
+    this.isDisplayed_ = false;
+    /** @const @private {!Vsync} */
+    this.vsync_ = vsyncFor(this.getWin());
+    this.viewport_.onScroll(() => {
+      console.log("onscroll");
+      if(!this.isDisplayed_) {
+        console.log("not displayed yet");
+        if(this.viewport_.getSize().height < this.viewport_.getScrollTop()) {
+          console.log("should display!");
+          this.isDisplayed_ = true;
+          this.element.style.display = 'block';
+
+          //this.viewport_.addToFixedLayer(this.element);
+          //this.scheduleLayout(this.element.firstElementChild);
+          //this.updateInViewport(this.element.firstElementChild, true);
+          this.vsync_.mutate(() => {
+            setStyles(this.element, {
+              'display': 'block',
+            });
+            this.viewport_.addToFixedLayer(this.element);
+            this.scheduleLayout(this.getRealChildren());
+          });
+        }
+      }
+    });
   }
 
 
@@ -51,8 +77,7 @@ class AmpStickyAd extends AMP.BaseElement {
     this.scheduleLayout(this.element.firstElementChild);
     this.updateInViewport(this.element.firstElementChild, true);
     this.viewport_.addToFixedLayer(this.element);
-    var maxHeight = Math.min(window.innerHeight/6, 100);
-    this.element.style.maxHeight = maxHeight.toString() + 'px';
+
     /*this.element.style.visibility = 'hidden';
     this.viewport_.onScroll = (scroll => {
       this.element.style.visibility = 'visible';
@@ -62,10 +87,8 @@ class AmpStickyAd extends AMP.BaseElement {
     });*/
     return Promise.resolve();
   }
-  scrollCallback() {
-    this.element.style.display = 'block';
-    console.log("scroll");
-  }
+
+
 
 }
 
