@@ -37,16 +37,36 @@ class AmpStickyAd extends AMP.BaseElement {
       dev.warn(TAG, `TAG ${TAG} disabled`);
       return;
     }
+    this.viewport_ = this.getViewport();
+    this.unlistenScroll = null;
   }
 
+
   layoutCallback() {
+    this.isExperimentOn_ = isExperimentOn(this.getWin(), EXPERIMENT);
+    if (!this.isExperimentOn_) {
+      dev.warn(TAG, `Experiment ${EXPERIMENT} disabled`);
+      return Promise.resolve();
+    }
     this.scheduleLayout(this.element.firstElementChild);
     this.updateInViewport(this.element.firstElementChild, true);
-    this.getViewport().addToFixedLayer(this.element);
+    this.viewport_.addToFixedLayer(this.element);
     var maxHeight = Math.min(window.innerHeight/6, 100);
     this.element.style.maxHeight = maxHeight.toString() + 'px';
+    this.element.style.visibility = 'hidden';
+    this.viewport_.onScroll = (scroll => {
+      this.element.style.visibility = 'visible';
+      var top  = window.pageYOffset || document.documentElement.scrollTop;
+      console.log(top);
+      console.log('scroll')
+    });
     return Promise.resolve();
   }
+  scrollCallback() {
+    this.element.style.display = 'block';
+    console.log("scroll");
+  }
+
 }
 
 AMP.registerElement('amp-sticky-ad', AmpStickyAd, CSS);
