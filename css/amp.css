@@ -58,21 +58,25 @@ body {
 .-amp-layout-fixed {
   display: inline-block;
   position: relative;
+  contain: layout;
 }
 
 .-amp-layout-responsive {
   display: block;
   position: relative;
+  contain: layout;
 }
 
 .-amp-layout-fixed-height {
   display: block;
   position: relative;
+  contain: layout;
 }
 
 .-amp-layout-container {
   display: block;
   position: relative;
+  contain: layout;
 }
 
 .-amp-layout-fill {
@@ -83,16 +87,19 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
+  contain: layout;
 }
 
 .-amp-layout-flex-item {
   display: block;
   position: relative;
   flex: 1 1 auto;
+  contain: layout;
 }
 
 .-amp-layout-size-defined {
   overflow: hidden !important;
+  contain: layout;
 }
 
 i-amp-sizer {
