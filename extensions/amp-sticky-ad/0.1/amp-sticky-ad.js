@@ -33,11 +33,6 @@ class AmpStickyAd extends AMP.BaseElement {
   /** @override */
   buildCallback() {
     /** @const @private {boolean} */
-    this.isExperimentOn_ = isExperimentOn(this.getWin(), TAG);
-    if (!this.isExperimentOn_) {
-      dev.warn(TAG, `TAG ${TAG} disabled`);
-      return;
-    }
 
     this.element.classList.add('-amp-sticky-ad-layout');
     const children = this.getRealChildren();
@@ -63,11 +58,6 @@ class AmpStickyAd extends AMP.BaseElement {
 
   /** @override */
   layoutCallback() {
-    this.isExperimentOn_ = isExperimentOn(this.getWin(), TAG);
-    if (!this.isExperimentOn_) {
-      dev.warn(TAG, `TAG ${TAG} disabled`);
-      return Promise.resolve();
-    }
     return Promise.resolve();
   }
 
