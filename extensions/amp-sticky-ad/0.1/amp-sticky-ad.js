@@ -108,7 +108,7 @@ class AmpStickyAd extends AMP.BaseElement {
         // by sticky ad, so no content would be blocked by sticky ad unit.
         const borderBottom = this.element./*OK*/offsetHeight;
         console.log('updatePaddingBottom');
-        this.viewport_.updatePaddingBottom(borderBottom);
+        //this.viewport_.updatePaddingBottom(borderBottom);
         // TODO(zhouyx): need to delete borderBottom when sticky ad is dismissed
         timer.delay(() => {
           // Unfortunately we don't really have a good way to measure how long it
