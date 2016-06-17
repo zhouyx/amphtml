@@ -25,6 +25,8 @@ amp-sticky-ad {
   max-height: 100px !important;
   box-sizing: border-box;
   background-color: rgba(0,0,0,0.5);
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0);
 }
 
 .-amp-sticky-ad-layout {
