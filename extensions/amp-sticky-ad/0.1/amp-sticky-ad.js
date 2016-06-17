@@ -117,7 +117,7 @@ class AmpStickyAd extends AMP.BaseElement {
           console.log('inside time delay');
           this.vsync_.mutate(() => {
             console.log('add element classList');
-            this.element.classList.add('amp-sticky-ad-loaded');
+            //this.element.classList.add('amp-sticky-ad-loaded');
             console.log('after add clssList');
           });
         }, 1000);
