@@ -100,9 +100,9 @@ class AmpStickyAd extends AMP.BaseElement {
         console.log("Inside deferMutate");
         toggle(this.element, true);
         console.log("after toggle true");
-        this.viewport_.addToFixedLayer(this.element);
+        //this.viewport_.addToFixedLayer(this.element);
         console.log('add to fixed layer');
-        this.scheduleLayout(this.ad_);
+        //this.scheduleLayout(this.ad_);
         console.log('scheduleLayout');
         // Add border-bottom to the body to compensate space that was taken
         // by sticky ad, so no content would be blocked by sticky ad unit.
