@@ -94,21 +94,33 @@ class AmpStickyAd extends AMP.BaseElement {
 
     // Check user has scrolled at least one viewport from init position.
     if (scrollTop > viewportHeight) {
+      const addFix = isExperimentOn(this.getWin(), 'addFix');
+      const scheduleLayout = isExperimentOn(this.getWin(), 'scheduleLayout');
+      const updatePadding = isExperimentOn(this.getWin(), 'updatePadding');
+      const changeStyle = isExperimentOn(this.getWin(), 'changeStyle');
       this.removeOnScrollListener_();
       console.log('put deferMutate into queue');
       this.deferMutate(() => {
         console.log("Inside deferMutate");
         toggle(this.element, true);
-        console.log("after toggle true");
+        if(addFix) {
+          console.log('add to fixed layer');
+          this.viewport_.addToFixedLayer(this.element);
+        }
         //this.viewport_.addToFixedLayer(this.element);
-        console.log('add to fixed layer');
         //this.scheduleLayout(this.ad_);
-        console.log('scheduleLayout');
+        if(scheduleLayout) {
+          this.scheduleLayout(this.ad_);
+          console.log('scheduleLayout');
+        }
+       //console.log('scheduleLayout');
         // Add border-bottom to the body to compensate space that was taken
         // by sticky ad, so no content would be blocked by sticky ad unit.
         const borderBottom = this.element./*OK*/offsetHeight;
-        console.log('updatePaddingBottom');
-        //this.viewport_.updatePaddingBottom(2);
+        if(updatePadding) {
+          this.viewport_.updatePaddingBottom(borderBottom);
+          console.log('updatePaddingBottom');
+        }
         // TODO(zhouyx): need to delete borderBottom when sticky ad is dismissed
         timer.delay(() => {
           // Unfortunately we don't really have a good way to measure how long it
@@ -117,8 +129,11 @@ class AmpStickyAd extends AMP.BaseElement {
           console.log('inside time delay');
           this.vsync_.mutate(() => {
             console.log('add element classList');
+            if(changeStyle) {
+              this.element.classList.add('amp-sticky-ad-loaded');
+              console.log('after add clssList');
+            }
             //this.element.classList.add('amp-sticky-ad-loaded');
-            console.log('after add clssList');
           });
         }, 1000);
       });
