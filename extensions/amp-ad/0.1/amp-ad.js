@@ -26,6 +26,7 @@ import {timer} from '../../../src/timer';
 import {user} from '../../../src/log';
 import {viewerFor} from '../../../src/viewer';
 import {removeElement} from '../../../src/dom';
+import {isExperimentOn} from '../../../src/experiments';
 
 
 /** @const These tags are allowed to have fixed positioning */
@@ -232,6 +233,11 @@ class AmpAd extends AMP.BaseElement {
 
   /** @override */
   layoutCallback() {
+    const adLayout = isExperimentOn(this.getWin(), 'adLayout');
+    if(adLayout) {
+      console.log('skip ad layoutCallback');
+      return Promise.resolve();
+    }
     if (!this.iframe_) {
       user.assert(!this.isInFixedContainer_,
           '<amp-ad> is not allowed to be placed in elements with ' +
