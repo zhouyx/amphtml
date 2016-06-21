@@ -105,7 +105,6 @@ class AmpStickyAd extends AMP.BaseElement {
       this.deferMutate(() => {
         console.log("Inside deferMutate");
         toggle(this.element, true);
-        debugger;
         setStyles(this.element, {
           'visibility': 'visible',
         });
