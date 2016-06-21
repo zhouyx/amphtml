@@ -19,7 +19,7 @@ import {getLengthNumeral, isLayoutSizeDefined} from '../src/layout';
 import {loadPromise} from '../src/event-helper';
 import {registerElement} from '../src/custom-element';
 import {srcsetFromElement} from '../src/srcset';
-import {isExperimentOn} from '../../../src/experiments';
+import {isExperimentOn} from '../src/experiments';
 
 
 export class AmpImg extends BaseElement {
