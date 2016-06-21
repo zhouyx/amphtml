@@ -96,17 +96,21 @@ class AmpStickyAd extends AMP.BaseElement {
 
     // Check user has scrolled at least one viewport from init position.
     if (scrollTop > viewportHeight) {
-      const addFix = isExperimentOn(this.getWin(), 'addFix');
-      const scheduleLayout = isExperimentOn(this.getWin(), 'scheduleLayout');
-      const updatePadding = isExperimentOn(this.getWin(), 'updatePadding');
-      const changeStyle = isExperimentOn(this.getWin(), 'changeStyle');
+      // const addFix = isExperimentOn(this.getWin(), 'addFix');
+      // const scheduleLayout = isExperimentOn(this.getWin(), 'scheduleLayout');
+      // const updatePadding = isExperimentOn(this.getWin(), 'updatePadding');
+      // const changeStyle = isExperimentOn(this.getWin(), 'changeStyle');
+      const addFix = true;
+      const scheduleLayout = true;
+      const updatePadding = true;
+      const changeStyle = true;
       this.removeOnScrollListener_();
       console.log('put deferMutate into queue');
       this.deferMutate(() => {
-        console.log("Inside deferMutate");
-        toggle(this.element, true);
         setStyles(this.element, {
+          'display': 'flex',
           'visibility': 'visible',
+          'min-height': '50px',
         });
         if(addFix) {
           console.log('add to fixed layer');
@@ -133,7 +137,6 @@ class AmpStickyAd extends AMP.BaseElement {
               this.element.classList.add('amp-sticky-ad-loaded');
               console.log('after add clssList');
             }
-            //this.element.classList.add('amp-sticky-ad-loaded');
           });
         }, 1000);
       });

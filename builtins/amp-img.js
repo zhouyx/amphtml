@@ -19,7 +19,6 @@ import {getLengthNumeral, isLayoutSizeDefined} from '../src/layout';
 import {loadPromise} from '../src/event-helper';
 import {registerElement} from '../src/custom-element';
 import {srcsetFromElement} from '../src/srcset';
-import {isExperimentOn} from '../src/experiments';
 
 
 export class AmpImg extends BaseElement {
@@ -76,12 +75,6 @@ export class AmpImg extends BaseElement {
 
   /** @override */
   layoutCallback() {
-    const imgLayout = isExperimentOn(this.getWin(), 'imgLayout');
-    if(imgLayout) {
-      console.log('skip img layoutCallback');
-      return Promise.resolve();
-    }
-
     let promise = this.updateImageSrc_();
 
     // We only allow to fallback on error on the initial layoutCallback
