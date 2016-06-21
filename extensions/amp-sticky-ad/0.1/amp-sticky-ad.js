@@ -33,7 +33,7 @@ class AmpStickyAd extends AMP.BaseElement {
   /** @override */
   buildCallback() {
     /** @const @private {boolean} */
-
+    console.log('inStickyAdBuildCallback');
     this.element.classList.add('-amp-sticky-ad-layout');
     const children = this.getRealChildren();
     // user.assert((children.length == 1 && children[0].tagName == 'AMP-AD'),
