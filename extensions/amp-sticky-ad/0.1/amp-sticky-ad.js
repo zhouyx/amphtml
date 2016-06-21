@@ -20,6 +20,7 @@ import {dev, user} from '../../../src/log';
 import {isExperimentOn} from '../../../src/experiments';
 import {timer} from '../../../src/timer';
 import {toggle} from '../../../src/style';
+import {setStyles} from '../../../src/style';
 
 /** @const */
 const TAG = 'amp-sticky-ad';
@@ -104,10 +105,15 @@ class AmpStickyAd extends AMP.BaseElement {
       this.deferMutate(() => {
         console.log("Inside deferMutate");
         toggle(this.element, true);
+        debugger;
+        setStyles(this.element, {
+          'visibility': 'visible',
+        });
         if(addFix) {
           console.log('add to fixed layer');
           this.viewport_.addToFixedLayer(this.element);
         }
+
         //this.viewport_.addToFixedLayer(this.element);
         //this.scheduleLayout(this.ad_);
         if(scheduleLayout) {
