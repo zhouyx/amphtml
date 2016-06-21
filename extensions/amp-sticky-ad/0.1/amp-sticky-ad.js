@@ -112,14 +112,10 @@ class AmpStickyAd extends AMP.BaseElement {
           console.log('add to fixed layer');
           this.viewport_.addToFixedLayer(this.element);
         }
-
-        //this.viewport_.addToFixedLayer(this.element);
-        //this.scheduleLayout(this.ad_);
         if(scheduleLayout) {
           this.scheduleLayout(this.ad_);
           console.log('scheduleLayout');
         }
-       //console.log('scheduleLayout');
         // Add border-bottom to the body to compensate space that was taken
         // by sticky ad, so no content would be blocked by sticky ad unit.
         const borderBottom = this.element./*OK*/offsetHeight;
@@ -132,9 +128,7 @@ class AmpStickyAd extends AMP.BaseElement {
           // Unfortunately we don't really have a good way to measure how long it
           // takes to load an ad, so we'll just pretend it takes 1 second for
           // now.
-          console.log('inside time delay');
           this.vsync_.mutate(() => {
-            console.log('add element classList');
             if(changeStyle) {
               this.element.classList.add('amp-sticky-ad-loaded');
               console.log('after add clssList');
