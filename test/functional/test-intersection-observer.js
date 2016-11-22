@@ -20,7 +20,7 @@ import {
   getThresholdSlot,
   DEFAULT_THRESHOLD,
   getIntersectionChangeEntry,
-} from '../../src/intersection-observer-polyfill';
+} from '../../src/intersection-observer';
 import {layoutRectLtwh} from '../../src/layout-rect';
 import * as sinon from 'sinon';
 

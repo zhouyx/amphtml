@@ -17,7 +17,7 @@
 import {base64EncodeFromBytes} from '../../../src/utils/base64.js';
 import {
   IntersectionObserverApi,
-} from '../../../src/intersection-observer-polyfill';
+} from '../../../src/intersection-observer';
 import {isAdPositionAllowed} from '../../../src/ad-helper';
 import {isLayoutSizeDefined} from '../../../src/layout';
 import {endsWith} from '../../../src/string';

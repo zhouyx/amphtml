@@ -23,7 +23,7 @@ import {
 } from '../../../src/iframe-helper';
 import {
   IntersectionObserverApi,
-} from '../../../src/intersection-observer-polyfill';
+} from '../../../src/intersection-observer';
 import {viewerForDoc} from '../../../src/viewer';
 import {dev, user} from '../../../src/log';
 import {timerFor} from '../../../src/timer';

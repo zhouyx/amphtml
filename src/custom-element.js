@@ -25,7 +25,7 @@ import {dev, rethrowAsync, user} from './log';
 import {documentStateFor} from './document-state';
 import {
   getIntersectionChangeEntry,
-} from '../src/intersection-observer-polyfill';
+} from '../src/intersection-observer';
 import {getMode} from './mode';
 import {parseSizeList} from './size-list';
 import {reportError} from './error';
