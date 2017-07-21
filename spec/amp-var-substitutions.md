@@ -420,7 +420,7 @@ Provides a per document-source-origin (the origin of the website where you publi
 
 * **platform variable**: `CLIENT_ID`
   *  Example: <br>
-  
+
   ```html
   <amp-pixel src="https://foo.com/pixel?cid=CLIENT_ID(cid-scope-cookie-fallback-name)"></amp-pixel>
 
@@ -854,7 +854,7 @@ Provides the time taken by the server to start sending the response after it sta
 
 Parses and provides the source URL of the current document to the URL.
 
-The source URL is extracted from the proxy URL if the document is being served from a *known* proxy. Otherwise, the original document URL is returned. For example, if the URL is served via the proxy `https://cdn.ampproject.org` from the URL `https://cdn.ampproject.org/c/s/example.com/page.html`, then `SOURCE_URL` would return `https://example.com/page.html`.
+The source URL is extracted from the proxy URL if the document is being served from a *known* proxy. Otherwise, the original document URL is returned. For example, if the URL is served via the proxy `https://cdn.ampproject.org` from the URL <code>https://cdn.ampproject.org/c/s/example.com/page.html<code>, then `SOURCE_URL` would return <code>https://example.com/page.html<code>.
 
 * **platform variable**: `SOURCE_URL`
   *  Example: <br>
