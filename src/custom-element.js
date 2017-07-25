@@ -1105,6 +1105,14 @@ function createBaseCustomElementClass(win) {
       const data = opt_data || {};
       // Constructors of events need to come from the correct window. Sigh.
       const win = this.ownerDocument.defaultView;
+      if (!win) {
+        // TODO (zhouyx, #9870): Remove after investigating #9870
+        if (Math.random() < 0.01) {
+          dev().error(TAG_, `${this.tagName} ownerDocument defaultView 
+            undefined on event ${name}`);
+        }
+        return;
+      }
       const event = win.document.createEvent('Event');
       event.data = data;
       event.initEvent(name, /* bubbles */ true, /* cancelable */ true);
