@@ -38,9 +38,9 @@ Integer in felis at lacus mattis facilisis. Curabitur tincidunt, felis porttitor
   <script type="application/json">
   {
     "requests": {
-      "old": "https://fake.com/analytics?timer",
+      "old": "fake.com/analytics?timer",
       "batch": {
-        "baseUrl": "https://fake.com/batch-analytics?",
+        "baseUrl": "fake.com/batch-analytics?",
         "maxDelay": 5
       }
     },
@@ -51,6 +51,9 @@ Integer in felis at lacus mattis facilisis. Curabitur tincidunt, felis porttitor
         "timerSpec": {
           "interval": 2,
           "maxTimerLength": 10
+        },
+        "extraUrlParams": {
+          "rc": "${requestCount}"
         }
       },
       "batch-timer": {
@@ -62,8 +65,7 @@ Integer in felis at lacus mattis facilisis. Curabitur tincidunt, felis porttitor
         },
         "batchSegment": "&timer",
         "extraUrlParams": {
-          "extra": "34",
-          "extra2": "${requestCount}"
+          "rc": "${requestCount}"
         }
       }
     },
