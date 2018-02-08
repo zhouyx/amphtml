@@ -98,7 +98,7 @@
     <!--
     The animations are implemented using [amp-animation](https://www.ampproject.org/docs/reference/components/amp-animation) which is an experimental AMP component that uses [Web Animations API](https://www.w3.org/TR/web-animations/) to support both __time__ and __scroll__ based animations.
     -->
-    <amp-animation id="adAnim" layout="nodisplay" trigger="visibility">
+    <amp-animation id="adAnim" layout="nodisplay">
       <script type="application/json">
         {
           "duration": "1s",
@@ -109,9 +109,7 @@
               "selector": "#cardsContainer",
               "keyframes": [
                 { "transform": "translateY(0)" },
-                { "transform": "translateY(0)", "offset": 0.1 },
-                { "transform": "translateY(-384px)", "offset": 0.9 },
-                { "transform": "translateY(-384px)", "offset": 1 }
+                { "transform": "translateY(-384px)"}
               ]
             }
           ]

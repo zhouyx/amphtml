@@ -157,27 +157,25 @@
     which is an experimental AMP component that uses [Web Animations API](https://www.w3.org/TR/web-animations/)
     to support both __time__ and __scroll__ based animations.
   -->
-  <amp-animation layout="nodisplay" id="videoAnim" trigger="visibility">
+  <amp-animation layout="nodisplay" id="videoAnim">
     <script type="application/json">
       {
-      "duration": "10s",
-      "ticker": "scroll",
+      "duration": "1s",
       "fill": "both",
+      "direction": "alternate",
       "animations": [
         {
           "selector": "#videoContainer",
           "keyframes": [
             { "transform": "scale(1)" },
-            { "transform": "scale(1)" },
-            { "transform": "scale(0.5)", "offset": 0.5 },
-            { "transform": "scale(0.5)", "offset": 1 }
+            { "transform": "scale(0.5)"}
           ]
         },
         {
           "selector": "#backgroundImg",
           "keyframes": [
             { "transform": "translateY(0)" },
-            { "transform": "translateY(60px)", "offset": 1 }
+            { "transform": "translateY(60px)"}
           ]
         }
       ]
@@ -217,7 +215,7 @@
     -->
   <amp-position-observer
       intersection-ratios="1"
-      viewport-margins="5vh"
+      viewport-margins="0px 50vh"
       on="scroll:videoAnim.seekTo(percent=event.percent)"
       layout="nodisplay"></amp-position-observer>
 
