@@ -491,6 +491,7 @@ describes.sandboxed('UrlReplacements', {}, () => {
     return expandUrlAsync('?tz_code=TIMEZONE_CODE').then(res => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       expect(res).to.match(/tz_code=\w+|^$/);
 =======
       expect(res).to.match(/tz_code=\w+/);
@@ -498,6 +499,9 @@ describes.sandboxed('UrlReplacements', {}, () => {
 =======
       expect(res).to.match(/tz_code=\w+|^$/);
 >>>>>>> Minor fixes
+=======
+      expect(res).to.match(/tz_code=\w+/);
+>>>>>>> Added support for variable substitution of IANA's Timezone Code
     });
   });
 

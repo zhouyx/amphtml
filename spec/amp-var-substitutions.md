@@ -193,7 +193,11 @@ The tables below list the available URL variables grouped by type of usage. Furt
 | [Scroll Left](#scroll-left)         | `SCROLL_LEFT`     | `${scrollLeft}`     |
 | [Scroll Top](#scroll-top)           | `SCROLL_TOP`      | `${scrollTop}`      |
 | [Timezone](#timezone)               | `TIMEZONE`        | `${timezone}`       |
+<<<<<<< HEAD
 | [Timezone Code](#timezone-code)     | `TIMEZONE_CODE`   | `${timezoneCode}`   |
+=======
+| [Timezone Code](#timezoneCode)      | `TIMEZONE_CODE`   | `${timezoneCode}`   |
+>>>>>>> Added support for variable substitution of IANA's Timezone Code
 | [User Agent](#user-agent)           | `USER_AGENT`      | `${userAgent}`      |
 | [Viewport Height](#viewport-height) | `VIEWPORT_HEIGHT` | `${viewportHeight}` |
 | [Viewport Width](#viewport-width)   | `VIEWPORT_WIDTH`  | `${viewportWidth}`  |
@@ -1032,7 +1036,11 @@ Provides the user's IANA time-zone code.
   ```
 * **amp-analytics variable**: `${timezoneCode}`
   * Example value: `Europe/Rome`.
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> Added support for variable substitution of IANA's Timezone Code
 #### Total Engaged Time
 
 Provides the total time (in seconds) the user has been engaged with the page since the page first became visible in the viewport. Total engaged time will be 0 until the page first becomes visible. This variable requires the [amp-analytics](../extensions/amp-analytics/amp-analytics.md) extension to be present on the page.
