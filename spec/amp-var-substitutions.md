@@ -194,10 +194,14 @@ The tables below list the available URL variables grouped by type of usage. Furt
 | [Scroll Top](#scroll-top)           | `SCROLL_TOP`      | `${scrollTop}`      |
 | [Timezone](#timezone)               | `TIMEZONE`        | `${timezone}`       |
 <<<<<<< HEAD
+<<<<<<< HEAD
 | [Timezone Code](#timezone-code)     | `TIMEZONE_CODE`   | `${timezoneCode}`   |
 =======
 | [Timezone Code](#timezoneCode)      | `TIMEZONE_CODE`   | `${timezoneCode}`   |
 >>>>>>> Added support for variable substitution of IANA's Timezone Code
+=======
+| [Timezone Code](#timezone-code)     | `TIMEZONE_CODE`   | `${timezoneCode}`   |
+>>>>>>> Minor fixes
 | [User Agent](#user-agent)           | `USER_AGENT`      | `${userAgent}`      |
 | [Viewport Height](#viewport-height) | `VIEWPORT_HEIGHT` | `${viewportHeight}` |
 | [Viewport Width](#viewport-width)   | `VIEWPORT_WIDTH`  | `${viewportWidth}`  |
