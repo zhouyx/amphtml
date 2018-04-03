@@ -140,8 +140,53 @@
     hr {
       margin: 0;
     }
+
+    .ampTabContainer {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .tabButton[selected] {
+        outline: none;
+        background: #ccc;
+    }
+
+    .tabButton {
+        list-style: none;
+        flex-grow: 1;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .tabContent {
+        display: none;
+        width: 100%;
+        order: 1; /* must be greater than the order of the tab buttons to flex to the next line */
+        border: 1px solid #ccc;
+    }
+
+    .tabButton[selected]+.tabContent {
+        display: block;
+    }
+
+    /* For example below (not required) */
+    .itemCustom {
+        border: 1px solid #000;
+        height: 280px;
+        width: 380px;
+        margin: 10px;
+        text-align: center;
+        padding-top: 140px;
+    }
+    amp-selector {
+      padding: 1rem;
+      margin: 1rem;
+    }
+
   </style>
-   <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+  <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+  <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
+
   <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
   <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
@@ -187,9 +232,19 @@
         }
       }</script>
       <div id="ui1">
-        Please Accept to load image.
-        <button on="tap:ABC.accept" role="button">Accept</button>
-        <button on="tap:ABC.reject" role="button">Reject</button>
+        Can we use your data to serve personalized content???
+        <amp-selector role="tablist" layout="container" class="ampTabContainer">
+          <div role="tab" class="tabButton" selected option="a">YES</div>
+          <div role="tabpanel" class="tabContent">
+            Your cookie will be shared with A, B, C
+             <button on="tap:amp-consent.accept" role="button">Accept</button>
+          </div>
+          <div role="tab" class="tabButton" option="b">NO</div>
+          <div role="tabpanel" class="tabContent">
+            This site will use your cookie
+             <button on="tap:amp-consent.reject" role="button">I understand</button>
+          </div>
+        </amp-selector>
       </div>
     </amp-consent>
     <article>
