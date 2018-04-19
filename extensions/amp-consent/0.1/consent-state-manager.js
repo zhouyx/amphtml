@@ -25,11 +25,11 @@ const TAG = 'CONSENT-STATE-MANAGER';
  * @enum {number}
  */
 export const CONSENT_ITEM_STATE = {
-  UNKNOWN: 0,
-  GRANTED: 1,
-  REJECTED: 2,
-  DISMISSED: 3,
-  NOT_REQUIRED: 4,
+  UNKNOWN: 1,
+  GRANTED: 2,
+  REJECTED: 3,
+  DISMISSED: 4,
+  NOT_REQUIRED: 5,
   // TODO(@zhouyx): Seperate UI state from consent state. Add consent requirement state
   // ui_state = {pending, active, complete}
   // consent_state = {unknown, granted, rejected}
