@@ -1,56 +1,100 @@
 <html>
-  afdsafdsfqewrfdsdasvcx cvfewsadf
-  <button id='a'>Accept</button>
-  <button id='r'>Reject</button>
-  <button id='d'>Dismiss</button>
-  <script type="text/javascript">
 
-    // Default values for non-3P iframe.
-var sentinel = 'amp';
-var ampWindow = parent;
+<div id='title'>
+<h2>A message from the publisher</h2>
+<p>Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah</p>
+</div>
+<div id='detail' class='hide'>
+  <!-- <iframe src = 'http://ads.localhost:8000/test/manual/diy-consent-expanded.html'></iframe> -->
+   <p>Vendor </p>
+  <p>Vendor </p>
+  <p>Vendor </p>
+  <p>Vendor </p>
+  <p>Vendor </p>
+  <p>Vendor </p>
+  <p>Vendor </p>
+  <p>Vendor </p>
+  <p>Vendor </p>
+  <p>Vendor </p>
+  <p>Vendor </p>
+  <p>Vendor </p>
+</div>
 
-// Detect 3P sentinel in the location.hash.
-var hashMatch = location.hash.match(/amp-3p-sentinel=((\d+)-\d+)/);
-if (hashMatch) {
-  sentinel = hashMatch[1];
-  // Depth is measured from window.top.
-  var depth = Number(hashMatch[2]);
-  var ancestors = [];
-  for (var win = window; win && win != win.parent; win = win.parent) {
-    // Add window keeping the top-most one at the front.
-    ancestors.unshift(win.parent);
+<button id='a'>Accept</button>
+<button id='d'>Dismiss</button>
+<button id='l'>Learn More</button>
+
+<style>
+  body {
+    text-align: center;
+    background-color: grey;
   }
-  ampWindow = ancestors[depth];
-}
+
+  .hide {
+    display: none;
+  }
+
+  .nodisplay {
+    bottom: 0;
+  }
+
+</style>
+
+<script type="text/javascript">
 
 
-setTimeout(() => {
-  parent.postMessage({
-    type: 'consent-ui-ready',
-  }, '*');
-}, 500);
+  setTimeout(() => {
+    parent.postMessage({
+      type: 'consent-ui-ready',
+    }, '*');
+  }, 1000);
 
-document.querySelector('#a').onclick = function () {
-		// parent.postMessage("message to be sent", "http://the-website-that-will-receive-the-msg.com")
-		parent.postMessage({
+  // Default values for non-3P iframe.
+  var sentinel = 'amp';
+  var ampWindow = parent;
+
+  // Detect 3P sentinel in the location.hash.
+  var hashMatch = location.hash.match(/amp-3p-sentinel=((\d+)-\d+)/);
+  if (hashMatch) {
+    sentinel = hashMatch[1];
+    // Depth is measured from window.top.
+    var depth = Number(hashMatch[2]);
+    var ancestors = [];
+    for (var win = window; win && win != win.parent; win = win.parent) {
+      // Add window keeping the top-most one at the front.
+      ancestors.unshift(win.parent);
+    }
+    ampWindow = ancestors[depth];
+  }
+
+  document.querySelector('#a').onclick = function () {
+    // parent.postMessage("message to be sent", "http://the-website-that-will-receive-the-msg.com")
+    parent.postMessage({
       type: 'consent-response',
       action: 'accept'
     }, '*');
   };
-document.querySelector('#r').onclick = function () {
-		// parent.postMessage("message to be sent", "http://the-website-that-will-receive-the-msg.com")
-		parent.postMessage({
-      type: 'consent-response',
-      action: 'reject'
-    }, '*');
-  };
 
-document.querySelector('#d').onclick = function () {
-		// parent.postMessage("message to be sent", "http://the-website-that-will-receive-the-msg.com")
-		parent.postMessage({
+  document.querySelector('#d').onclick = function () {
+    // parent.postMessage("message to be sent", "http://the-website-that-will-receive-the-msg.com")
+    parent.postMessage({
       type: 'consent-response',
       action: 'dismiss'
     }, '*');
-	};
+  };
+
+  document.querySelector('#l').onclick = function () {
+    // learn more
+    detail = document.getElementById('detail');
+    detail.classList.remove('hide');
+    title = document.getElementById('title');
+    title.classList.add('hide');
+    l = document.getElementById('l');
+    l.classList.add('hide');
+    parent.postMessage({
+      type: 'consent-ui-fullscreen',
+    }, '*');
+  };
+
 </script>
 </html>

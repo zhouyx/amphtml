@@ -235,6 +235,7 @@ export class ConsentUI {
     const {classList} = this.parent_;
     classList.remove('i-amphtml-consent-ui-in');
     classList.remove('consent-iframe-active');
+    this.parent_.classList.remove('i-amphtml-consent-ui-fullscreen');
     this.win_.removeEventListener('message', this.boundHandleIframeMessages_);
     removeElement(dev().assertElement(this.ui_));
   }
@@ -262,6 +263,11 @@ export class ConsentUI {
 
     if (data['type'] == 'consent-ui-ready') {
       this.iframeReady_.resolve();
+    }
+
+    if(data['type'] == 'consent-ui-fullscreen') {
+      console.log('fullscreen');
+      this.parent_.classList.add('i-amphtml-consent-ui-fullscreen');
     }
   }
 }
