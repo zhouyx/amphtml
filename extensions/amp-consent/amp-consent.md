@@ -109,7 +109,7 @@ Example:
 AMP sends the consent instance ID in the `consentInstanceId` field with the POST request.
 
 ```html
-{ 
+{
   "consentInstanceId": {string},
   "consentStateValue": {enum}, // the stored consent state in client cache
                                // takes value of ["accepted", "rejected", "unknown"]
@@ -123,29 +123,30 @@ AMP sends the consent instance ID in the `consentInstanceId` field with the POST
 AMP expects the response to be a JSON object like the following:
 
 ```html
-{ 
-  "consentRequired": {boolean}                  // Whether consent is required from the user. 
+{
+  "consentRequired": {boolean}                  // Whether consent is required from the user.
   "consentStateValue": {?enum} [default: null], // (new) The latest consent state known by the server
                                                 // Takes value of ["accepted", "rejected", "unknown"].
                                                 // The value will be ignored if "consentRequired: false".
                                                 // If the value is non-null, it will be cached at client.
   "consentString": {?string} [default: null],   // (new) The latest consent string known by the server.
                                                 // If the value is non-null, it will be cached at client.
-  "expireCache": {boolean} [default: false]     // (new) Indicate that the cache needs to be cleared.  
-                                                // Set to `true` in conjunction with consentStateValue='accepted'/'rejected' 
-                                                // to enforce server side consent state 
+  "expireCache": {boolean} [default: false]     // (new) Indicate that the cache needs to be cleared.
+                                                // Set to `true` in conjunction with consentStateValue='accepted'/'rejected'
+                                                // to enforce server side consent state
 }
 ```
 
 Optionally, additional key-value pairs can be returned in the response as the `sharedData` field.
 
 ```html
-{ 
+{
+  "consentRequire": true,
   "sharedData": {
     "a-key": "some-string-value",
-    "key-with-bool-value": true, 
+    "key-with-bool-value": true,
     "key-with-numeric-value": 123
-  } 
+  }
 }
 ```
 
@@ -159,7 +160,7 @@ Unlike consent state, this `shareData` is not persisted in client side storage.
 
 ##### Client caching
 As mentioned in the response section, the consent state returned in the response will be stored in `localStorage` as a client
-side cache. The cached value will be used to avoid an extra server roundtrip on user's next visit. Note that this cached value, i.e user's previous consent decision ("accepted" or "rejected"), will always be respected in prior to all other things. 
+side cache. The cached value will be used to avoid an extra server roundtrip on user's next visit. Note that this cached value, i.e user's previous consent decision ("accepted" or "rejected"), will always be respected in prior to all other things.
 A couple of implications with this behavior:
 
 - If a user can make consent decisions elsewhere, any decision changes will be one-time off due to the client cache.
@@ -170,12 +171,12 @@ If the above behavior is unwanted, publishers can return `expireCache: true` all
 Note that any locally collected consent decisions via AMP's prompt UI are also stored in the same client cache overriding any previous consent state.
 
 #### consentRequired
-`consentRequired`: It accepts a boolean value indicating if a consent is required. `<amp-consent>` releases the lock immediately if `consentRequired: false`. It makes sense mostly with a combination of [geoOverride](#geooverride) config so that only a certain regions require consent. 
+`consentRequired`: It accepts a boolean value indicating if a consent is required. `<amp-consent>` releases the lock immediately if `consentRequired: false`. It makes sense mostly with a combination of [geoOverride](#geooverride) config so that only a certain regions require consent.
 
 It can also be set to `consentRequired: "remote"` to fetch the value remotely from the `checkConsentHref` endpoint. This is
 useful when publishers want to use their own server to decide if consent is required. For example, they want to have their own geo detection, or use the existing consent state for a known user.
 
-Note that this value will be ignored if there is previous consent state stored in client cache (see [Client caching](#client-caching) section for examples). 
+Note that this value will be ignored if there is previous consent state stored in client cache (see [Client caching](#client-caching) section for examples).
 
 
 #### onUpdateHref
@@ -185,9 +186,9 @@ Note that this value will be ignored if there is previous consent state stored i
 AMP sends the consent instance ID, a generated user id only for this usage and the consent state along with the POST request.
 
 ```html
-{ 
+{
   "consentInstanceId": "my-consent",
-  "ampUserId": "xxx", 
+  "ampUserId": "xxx",
   "consentStateValue": "accepted"/"rejected"/"unknown"
 }
 ```
@@ -201,9 +202,9 @@ The consent decisions collected from user via this prompt UI will be stored in `
 
 #### geoOverride
 
-`geoOverride` provides a way to utilize the `<amp-geo>` component to detect user's geo location to assist client side decisions. 
+`geoOverride` provides a way to utilize the `<amp-geo>` component to detect user's geo location to assist client side decisions.
 
-`geoOverride` is a JSON object keyed by geo group codes which are defined in `<amp-geo>` (details [here](https://github.com/ampproject/amphtml/blob/master/extensions/amp-geo/amp-geo.md)). Each geo override should be a valid `<amp-consent>` config object. AMP will take all the values in the corresponding `geoOverride` to override the existing config. 
+`geoOverride` is a JSON object keyed by geo group codes which are defined in `<amp-geo>` (details [here](https://github.com/ampproject/amphtml/blob/master/extensions/amp-geo/amp-geo.md)). Each geo override should be a valid `<amp-consent>` config object. AMP will take all the values in the corresponding `geoOverride` to override the existing config.
 
 Two important tips when configuring `amp-geo`:
 
@@ -221,7 +222,7 @@ Take the following config as an example:
   "geoOverride": {
     "geoGroup1": {
       "consentRequired": true,
-    }, 
+    },
     "geoGroup2": {
       "checkConsentHref": "https://example.com/check-consent",
       "consentRequired": "remote",
